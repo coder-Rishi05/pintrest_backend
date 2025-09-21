@@ -32,6 +32,6 @@ const userSchema = mongoose.Schema({
   },
 });
 
-const usermodel = mongoose.model("User", userSchema); // here user means the name of the model in mongoDB.
+const userModel = mongoose.model("User", userSchema); // here user means the name of the model in mongoDB.
 
-module.exports = usermodel;
+module.exports = userModel;

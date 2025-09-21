@@ -22,21 +22,15 @@ router.get("/createuser", async (req, res) => {
   }
 });
 
-// router.get("/getUser", async (req, res) => {
-//   try {
-//     const data = await userModel.find();
-//     res.send(data);
-//     console.log(data);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
-
 router.get("/createpost", async (req, res) => {
   const postData = await Post.create({
     postText: "lovely image",
+    user: "68cf63c3c783c0bd13d11088", // now this post belongs to the user who have this id.
   });
-  res.send(postData)
+  let user = await userModel.findOne({ _id: "68cf63c3c783c0bd13d11088" });
+  user.posts.push(postData._id);
+  await user.save();
+  res.send("created post and connected user and posts");
 });
 
 module.exports = router;
