@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const plm = require("passport-local-mongoose");
 
 mongoose.connect("mongodb://127.0.0.1:27017/pintrestApp");
 
@@ -26,11 +27,13 @@ const userSchema = mongoose.Schema({
     required: true,
     unique: true,
   },
-  fullName: {
+  fullname: {
     type: String,
     required: true,
   },
 });
+
+userSchema.pluggin(plm);
 
 const userModel = mongoose.model("User", userSchema); // here user means the name of the model in mongoDB.
 
